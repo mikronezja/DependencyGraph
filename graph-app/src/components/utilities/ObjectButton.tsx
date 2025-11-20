@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const ObjectButtonStyled = styled.button`
-  border: 1.7px solid #ff80e8;
-  background-color: #ffb0f0;
+const ObjectButtonStyled = styled.button<{
+  borderColor: string;
+  backgroundColor: string;
+  hoverBorderColor: string;
+}>`
+  border: 1.7px solid ${(props) => props.borderColor}
+  background-color:  ${(props) => props.backgroundColor}
   border-radius: 5px;
   cursor: pointer;
   color: white;
@@ -13,18 +17,36 @@ const ObjectButtonStyled = styled.button`
   text-decoration: none;
 
   &:hover {
-    background-color: #ff80e8;
-    border-color: #ff44ddff;
+    background-color: ${(props) => props.borderColor}
+    border-color: ${(props) => props.hoverBorderColor}
   }
 `;
 
 interface ObjectButtonStyledProps {
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   text: string;
+  borderColor: string;
+  backgroundColor: string;
+  hoverBorderColor: string;
 }
 
-const ObjectButton = ({ onClick, text }: ObjectButtonStyledProps) => {
-  return <ObjectButtonStyled onClick={onClick}>{text}</ObjectButtonStyled>;
+const ObjectButton = ({
+  onClick,
+  text,
+  borderColor,
+  backgroundColor,
+  hoverBorderColor,
+}: ObjectButtonStyledProps) => {
+  return (
+    <ObjectButtonStyled
+      borderColor={borderColor}
+      backgroundColor={backgroundColor}
+      hoverBorderColor={hoverBorderColor}
+      onClick={onClick}
+    >
+      {text}
+    </ObjectButtonStyled>
+  );
 };
 
 export default ObjectButton;

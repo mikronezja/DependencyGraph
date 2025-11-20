@@ -3,9 +3,9 @@ import { ButtonStyled } from "../../Styles";
 const ClearButton = () => {
   return (
     <ButtonStyled
-      color="#f2b8ffff"
-      backgroundColor="white"
-      borderColor="#f2b8ffff"
+      color="#ffffffff"
+      backgroundColor="#3a3a3aff"
+      borderColor="#3e3e3eff"
       hoverBackgroundColor="#ff478bff"
       hoverColor="white"
       hoverBorderColor="#ff478bff"

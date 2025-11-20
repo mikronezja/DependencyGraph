@@ -4,14 +4,21 @@ import ObjectButton from "../utilities/ObjectButton";
 import { ContainerStyled, ContainerTitle, TextAreaStyled } from "../../Styles";
 
 const CalculatorDisplay = () => {
-  // map -> strings
   const { operations, setOperations } = useContext(AppContext);
 
+  console.log({ operations });
   return (
-    <ContainerStyled inputHeight="200px">
+    <ContainerStyled
+      inputHeight="200px"
+      shadowColor="#5EB6FF"
+      backGroundColor="#b0dcffff"
+    >
       <ContainerTitle>Type your equations</ContainerTitle>
       <div>
         <ObjectButton
+          backgroundColor="#ff478bff"
+          borderColor="#ffdde9ff"
+          hoverBorderColor="#ff70a2ff"
           text="+"
           onClick={() => {
             const newId =
@@ -23,16 +30,32 @@ const CalculatorDisplay = () => {
           }}
         />
       </div>
-      {operations.map(({ id, equation }) => {
+      {operations.map(({ id, equation }, index) => {
         return (
-          <TextAreaStyled
+          <div
             key={id}
-            onChange={(e) => {
-              const copy = [...operations];
-              copy[id].equation = e.target.value;
-              setOperations(copy);
-            }}
-          />
+            style={{ display: "flex", justifyContent: "space-around" }}
+          >
+            <TextAreaStyled
+              value={equation}
+              onChange={(e) => {
+                const copy = [...operations];
+                copy[index].equation = e.target.value;
+                setOperations(copy);
+              }}
+            />
+            <ObjectButton
+              backgroundColor="#ff478bff"
+              borderColor="#ffdde9ff"
+              hoverBorderColor="#ff70a2ff"
+              text="X"
+              onClick={() => {
+                const copy = [...operations];
+                copy.splice(index, 1);
+                setOperations(copy);
+              }}
+            />
+          </div>
         );
       })}
     </ContainerStyled>

@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const AppStyled = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f7d4ffff;
   height: 100vh;
   min-width: 100vw;
 `;
@@ -23,14 +22,18 @@ export const RowStyled = styled.div`
   justify-content: space-evenly;
 `;
 
-export const ContainerStyled = styled.div<{ inputHeight?: string }>`
+export const ContainerStyled = styled.div<{
+  inputHeight?: string;
+  shadowColor?: string;
+  backGroundColor?: string;
+}>`
   display: flex;
   flex-direction: column;
-  background-color: white;
+  background-color: ${(props) => props.backGroundColor};
   border-radius: 10px;
   height: ${(props) => props.inputHeight || "100%"};
   padding: 10px;
-  box-shadow: 10px 10px #f2b8ffff;
+  box-shadow: 10px 10px ${(props) => props.shadowColor || "#f2b8ffff"};
   margin: 20px;
   flex-grow: 0;
   width: 30vw;
@@ -67,8 +70,11 @@ export const ButtonStyled = styled.button<{
 `;
 
 export const TextAreaStyled = styled.textarea`
-  border: 2px solid #f2b8ffff;
+  border: 3px solid #f2b8ffff;
   display: block;
   flex-shrink: 0;
+  width: 60%;
   resize: none;
+  height: 20px;
+  border-radius: 5px;
 `;

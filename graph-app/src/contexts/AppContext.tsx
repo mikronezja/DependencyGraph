@@ -6,9 +6,14 @@ export interface OperationType {
   equation: string;
 }
 
+export interface AlphabetType {
+  id: number;
+  letter: string;
+}
+
 export interface AppContextInterface {
-  alphabet: string[];
-  setAlphabet: Dispatch<SetStateAction<string[]>>;
+  alphabet: AlphabetType[];
+  setAlphabet: Dispatch<SetStateAction<AlphabetType[]>>;
   word: string[];
   setWord: Dispatch<SetStateAction<string[]>>;
   operations: OperationType[];
