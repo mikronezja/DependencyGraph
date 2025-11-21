@@ -10,6 +10,7 @@ const ResizableOutputStyled = styled(ResizableBox)`
   background: #ffffffff;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 `;
 
 const OutputDisplayStyled = styled.div`
