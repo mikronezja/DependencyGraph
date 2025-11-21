@@ -45,8 +45,8 @@ export const getDependencyArray = (
   const exprLetters = new Set<string>();
   const dependencyArray: DependencyPair[] = [];
 
-  operations = operations.filter(({ letter, equation }) =>
-    alphabet.map(({ id, letter }) => letter).includes(letter)
+  operations = operations.filter(({ letter }) =>
+    alphabet.map(({ letter }) => letter).includes(letter)
   );
 
   const mapLetterToExpression = new Map<string, Set<string>>();

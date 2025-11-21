@@ -2,9 +2,8 @@ import { useState } from "react";
 import Calculator from "./components/calculator/CalculatorDisplay";
 import Alphabet from "./components/alphabet/AlphabetDisplay";
 import Word from "./components/word/WordDisplay";
-import Graph from "./components/output/graph/Graph";
 import "./index.css";
-import { AppStyled, ColumnStyled, ContainerStyled, RowStyled } from "./Styles";
+import { AppStyled, ColumnStyled, RowStyled } from "./Styles";
 import {
   AppContext,
   type AlphabetType,
@@ -47,8 +46,6 @@ function App() {
   const [operations, setOperations] = useState<OperationType[]>([]);
   const [showOutput, setShowOutput] = useState<number>(0);
 
-  const [width, setWidth] = useState(200);
-
   return (
     <AppStyled>
       <AppContext.Provider
@@ -72,7 +69,7 @@ function App() {
               backgroundcolor="#00d25bff"
               bordercolor="#00af4cff"
               hoverbordercolor="#00af4cff"
-              onClick={(e) => {
+              onClick={() => {
                 setShowOutput(showOutput + 1);
               }}
               text="Give output"
@@ -81,7 +78,7 @@ function App() {
               backgroundcolor="#a9a9a9ff"
               bordercolor="#8c8c8cff"
               hoverbordercolor="#8c8c8cff"
-              onClick={(e) => {
+              onClick={() => {
                 setShowOutput(0);
                 setAlphabet([]);
                 setOperations([]);

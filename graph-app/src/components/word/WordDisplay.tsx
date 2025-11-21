@@ -1,10 +1,5 @@
-import React, { useContext } from "react";
-import {
-  ContainerStyled,
-  ContainerTitle,
-  RowStyled,
-  TextAreaStyled,
-} from "../../Styles";
+import { useContext } from "react";
+import { ContainerStyled, ContainerTitle, TextAreaStyled } from "../../Styles";
 import ObjectButton from "../utilities/ObjectButton";
 import { AppContext } from "../../contexts/AppContext";
 

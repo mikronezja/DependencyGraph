@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Graph from "./graph/Graph";
 import {
   getDependencyArray,
@@ -6,12 +6,7 @@ import {
   getGraphOfAWord,
   getIndependencyArray,
 } from "../../functions";
-import {
-  AppContext,
-  type AlphabetType,
-  type OperationType,
-  type WordType,
-} from "../../contexts/AppContext";
+import { AppContext } from "../../contexts/AppContext";
 import Otherdata from "./otherdata/Otherdata";
 import styled from "styled-components";
 

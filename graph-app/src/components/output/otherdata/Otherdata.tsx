@@ -1,4 +1,3 @@
-import React from "react";
 import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
 import styled from "styled-components";

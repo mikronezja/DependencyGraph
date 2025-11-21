@@ -11,8 +11,6 @@ import { COLORS } from "./constants";
 
 const nodeTypes = { custom: CustomNode };
 
-const edges = [{ id: "e1-2", source: "1", target: "2" }];
-
 interface GraphProps {
   foataForm: string[][] | undefined;
   adjacencyList: Map<string, Set<string>> | undefined;
@@ -37,7 +35,7 @@ const Graph = ({ foataForm, adjacencyList, canShowOutput }: GraphProps) => {
 
       level.forEach((nodeId, xIndex) => {
         const xPos = xIndex * 200;
-        const [letter, id] = nodeId.split("_");
+        const [letter] = nodeId.split("_");
 
         newNodes.push({
           id: nodeId,
