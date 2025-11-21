@@ -2,23 +2,52 @@ import { useState } from "react";
 import Calculator from "./components/calculator/CalculatorDisplay";
 import Alphabet from "./components/alphabet/AlphabetDisplay";
 import Word from "./components/word/WordDisplay";
-import Graph from "./components/graph/Graph";
+import Graph from "./components/output/graph/Graph";
 import "./index.css";
 import { AppStyled, ColumnStyled, ContainerStyled, RowStyled } from "./Styles";
 import {
   AppContext,
   type AlphabetType,
   type OperationType,
+  type WordType,
 } from "./contexts/AppContext";
-import ClearButton from "./components/utilities/ClearButton";
-import OutputButton from "./components/utilities/OutputButton";
 import ObjectButton from "./components/utilities/ObjectButton";
+import Output from "./components/output/Output";
+import "react-resizable/css/styles.css";
+import { ResizableBox } from "react-resizable";
+import styled from "styled-components";
+
+const ResizableInputStyled = styled(ResizableBox)`
+  height: 100%;
+  border-right: 6px solid #ecececff;
+  background: #ffffffff;
+  display: flex;
+  flex-direction: column;
+`;
+
+const HeaderStyled = styled.div`
+  width: 100%;
+  background-color: white;
+  height: 10%;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const ButtonContainerStyled = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-right: 20px;
+`;
 
 function App() {
   const [alphabet, setAlphabet] = useState<AlphabetType[]>([]);
-  const [word, setWord] = useState<string[]>([]);
+  const [word, setWord] = useState<WordType[]>([]);
   const [operations, setOperations] = useState<OperationType[]>([]);
-  const [showOutput, setShowOutput] = useState<boolean>(false);
+  const [showOutput, setShowOutput] = useState<number>(0);
+
+  const [width, setWidth] = useState(200);
 
   return (
     <AppStyled>
@@ -34,61 +63,52 @@ function App() {
           setShowOutput,
         }}
       >
-        <div
-          style={{
-            width: "100%",
-            backgroundColor: "white",
-            height: "10%",
-            minHeight: "30px",
-          }}
-        >
-          Header
-        </div>
-        <div style={{ flexShrink: "0", height: "80vh" }}>
-          <RowStyled>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <Calculator />
-            </div>
-            <ColumnStyled>
-              <Alphabet />
-              <Word />
-            </ColumnStyled>
-          </RowStyled>
-          <div>
+        <HeaderStyled>
+          <div style={{ marginLeft: "20px", fontSize: "20px" }}>
+            {`>`} Dependencies
+          </div>
+          <ButtonContainerStyled>
             <ObjectButton
-              backgroundColor="#ff478bff"
-              borderColor="#ffdde9ff"
-              hoverBorderColor="#ff70a2ff"
+              backgroundcolor="#00ff6eff"
+              bordercolor="#00af4cff"
+              hoverbordercolor="#00af4cff"
               onClick={(e) => {
-                // compute things
-                setShowOutput(true);
+                setShowOutput(showOutput + 1);
               }}
               text="Give output"
             />
             <ObjectButton
-              backgroundColor="#ff478bff"
-              borderColor="#ffdde9ff"
-              hoverBorderColor="#ff70a2ff"
-              onClick={(e) => {}}
+              backgroundcolor="#a9a9a9ff"
+              bordercolor="#8c8c8cff"
+              hoverbordercolor="#8c8c8cff"
+              onClick={(e) => {
+                setShowOutput(0);
+                setAlphabet([]);
+                setOperations([]);
+                setWord([]);
+              }}
               text="Clear"
             />
-          </div>
-        </div>
-        {showOutput && (
+          </ButtonContainerStyled>
+        </HeaderStyled>
+        <RowStyled>
+          <ResizableInputStyled
+            className="custom-box box"
+            width={400}
+            height={Infinity}
+            axis="x"
+            minConstraints={[370, Infinity]}
+            maxConstraints={[1000, Infinity]}
+            resizeHandles={["e"]}
+          >
+            <Calculator />
+            <Alphabet />
+            <Word />
+          </ResizableInputStyled>
           <ColumnStyled>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <div
-                style={{ width: "100%", borderTop: "5px solid white" }}
-              ></div>
-              <Graph />
-            </div>
+            <Output showOutput={showOutput} />
           </ColumnStyled>
-        )}
+        </RowStyled>
       </AppContext.Provider>
     </AppStyled>
   );

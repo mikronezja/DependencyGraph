@@ -11,70 +11,79 @@ export const ColumnStyled = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
   justify-content: space-evenly;
 `;
 
 export const RowStyled = styled.div`
   display: flex;
   flex-direction: row;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   width: 100%;
-  justify-content: space-evenly;
 `;
 
 export const ContainerStyled = styled.div<{
-  inputHeight?: string;
-  shadowColor?: string;
-  backGroundColor?: string;
+  inputheight?: string;
+  backgroundcolor?: string;
 }>`
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.backGroundColor};
-  border-radius: 10px;
-  height: ${(props) => props.inputHeight || "100%"};
+  background-color: ${(props) => props.backgroundcolor};
+  height: ${(props) => props.inputheight || "100%"};
   padding: 10px;
-  box-shadow: 10px 10px ${(props) => props.shadowColor || "#f2b8ffff"};
   margin: 20px;
-  flex-grow: 0;
-  width: 30vw;
   gap: 10px;
   overflow-y: auto;
+  overflow-x: hidden;
   min-height: 0;
 `;
 
 export const ContainerTitle = styled.div`
   display: flex;
+  color: white;
   justify-content: center;
 `;
 
 export const ButtonStyled = styled.button<{
   color: string;
-  backgroundColor: string;
-  borderColor: string;
-  hoverColor: string;
-  hoverBackgroundColor: string;
-  hoverBorderColor: string;
+  backgroundcolor: string;
+  bordercolor: string;
+  hovercolor: string;
+  hoverbackgroundcolor: string;
+  hoverbordercolor: string;
 }>`
   color: ${(props) => props.color};
-  background-color: ${(props) => props.backgroundColor};
-  border: 2px solid ${(props) => props.borderColor};
+  background-color: ${(props) => props.backgroundcolor};
+  border: 2px solid ${(props) => props.bordercolor};
   transition-duration: 0.4s;
   padding: 8px 20px;
   border-radius: 5px;
 
   &:hover {
-    background-color: ${(props) => props.hoverBackgroundColor};
-    border: 2px solid ${(props) => props.hoverBorderColor};
-    color: ${(props) => props.hoverColor};
+    background-color: ${(props) => props.hoverbackgroundcolor};
+    border: 2px solid ${(props) => props.hoverbordercolor};
+    color: ${(props) => props.hovercolor};
   }
 `;
 
-export const TextAreaStyled = styled.textarea`
-  border: 3px solid #f2b8ffff;
+export const TextAreaStyled = styled.textarea<{ hoverbordercolor: string }>`
+  border: 3px solid white;
   display: block;
-  flex-shrink: 0;
-  width: 60%;
+  width: 40%;
   resize: none;
   height: 20px;
+  transition-duration: 0.4s;
   border-radius: 5px;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: white;
+    color: inherit;
+  }
+
+  &:hover {
+    border: 3px solid ${(props) => props.hoverbordercolor};
+  }
 `;

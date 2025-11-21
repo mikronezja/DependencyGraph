@@ -6,20 +6,22 @@ import { AppContext } from "../../contexts/AppContext";
 const AlphabetDisplay = () => {
   const { alphabet, setAlphabet } = useContext(AppContext);
   return (
-    <ContainerStyled shadowColor="#ff478bff" backGroundColor="#ffdde9ff">
+    <ContainerStyled backgroundcolor="#ffd059ff">
       <ContainerTitle>Add letters to your alphabet</ContainerTitle>
-      <ObjectButton
-        backgroundColor="#ff478bff"
-        borderColor="#ffdde9ff"
-        hoverBorderColor="#ff70a2ff"
-        text="+"
-        onClick={() => {
-          const newId =
-            alphabet.length > 0 ? alphabet[alphabet.length - 1].id + 1 : 0;
+      <div>
+        <ObjectButton
+          backgroundcolor="rgba(255, 193, 35, 1)"
+          bordercolor="#ffaf38ff"
+          hoverbordercolor="#ffaf38ff"
+          text="+"
+          onClick={() => {
+            const newId =
+              alphabet.length > 0 ? alphabet[alphabet.length - 1].id + 1 : 0;
 
-          setAlphabet([...alphabet, { id: newId, letter: "" }]);
-        }}
-      />
+            setAlphabet([...alphabet, { id: newId, letter: "" }]);
+          }}
+        />
+      </div>
       {alphabet.map(({ id, letter }, index) => {
         return (
           <div
@@ -27,6 +29,7 @@ const AlphabetDisplay = () => {
             style={{ display: "flex", justifyContent: "space-around" }}
           >
             <TextAreaStyled
+              hoverbordercolor="#ffaf38ff"
               value={letter}
               onChange={(e) => {
                 const copy = [...alphabet];
@@ -36,9 +39,9 @@ const AlphabetDisplay = () => {
             />
             <ObjectButton
               text="X"
-              backgroundColor="#ff478bff"
-              borderColor="#ffdde9ff"
-              hoverBorderColor="#ff70a2ff"
+              backgroundcolor="rgba(255, 193, 35, 1)"
+              bordercolor="#ffaf38ff"
+              hoverbordercolor="#ffaf38ff"
               onClick={() => {
                 const copy = [...alphabet];
                 copy.splice(index, 1);

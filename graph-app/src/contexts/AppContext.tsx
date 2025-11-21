@@ -2,7 +2,7 @@ import { createContext } from "react";
 import type { Dispatch, SetStateAction } from "react";
 
 export interface OperationType {
-  id: number;
+  letter: string;
   equation: string;
 }
 
@@ -11,15 +11,20 @@ export interface AlphabetType {
   letter: string;
 }
 
+export interface WordType {
+  id: number;
+  letter: string;
+}
+
 export interface AppContextInterface {
   alphabet: AlphabetType[];
   setAlphabet: Dispatch<SetStateAction<AlphabetType[]>>;
-  word: string[];
-  setWord: Dispatch<SetStateAction<string[]>>;
+  word: WordType[];
+  setWord: Dispatch<SetStateAction<WordType[]>>;
   operations: OperationType[];
   setOperations: Dispatch<SetStateAction<OperationType[]>>;
-  showOutput: boolean;
-  setShowOutput: Dispatch<SetStateAction<boolean>>;
+  showOutput: number;
+  setShowOutput: Dispatch<SetStateAction<number>>;
 }
 
 export const AppContext = createContext<AppContextInterface>({
@@ -29,6 +34,6 @@ export const AppContext = createContext<AppContextInterface>({
   setWord: () => {},
   operations: [],
   setOperations: () => {},
-  showOutput: false,
+  showOutput: 0,
   setShowOutput: () => {},
 });

@@ -4,25 +4,27 @@ import type { NodeProps } from "reactflow";
 
 type NodeData = {
   label: string;
+  color: string;
 };
 
-const circleNodeStyle = {
+const customNodeStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: 50,
-  height: 50,
-  background: "#42ff7aff",
+  width: 70,
+  height: 40,
   color: "white",
-  borderRadius: "50%",
-  border: "2px solid #871ec3ff",
+  borderRadius: "10%",
   fontFamily: "sans-serif",
   fontSize: "14px",
 };
 
-function CircleNode({ data }: NodeProps<NodeData>) {
+function CustomNode({ data }: NodeProps<NodeData>) {
   return (
-    <div style={circleNodeStyle}>
+    <div
+      style={{ ...customNodeStyle, backgroundColor: data.color }}
+      background-color={data.color}
+    >
       <Handle type="target" position={Position.Top} />
       <div>{data.label}</div>
       <Handle type="source" position={Position.Bottom} />
@@ -30,4 +32,4 @@ function CircleNode({ data }: NodeProps<NodeData>) {
   );
 }
 
-export default CircleNode;
+export default CustomNode;

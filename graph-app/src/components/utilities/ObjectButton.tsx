@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const ObjectButtonStyled = styled.button<{
-  borderColor: string;
-  backgroundColor: string;
-  hoverBorderColor: string;
+  bordercolor: string;
+  backgroundcolor: string;
+  hoverbordercolor: string;
 }>`
-  border: 1.7px solid ${(props) => props.borderColor}
-  background-color:  ${(props) => props.backgroundColor}
+  border: 1.7px solid ${(props) => props.bordercolor};
+  background-color: ${(props) => props.backgroundcolor};
   border-radius: 5px;
   cursor: pointer;
   color: white;
@@ -17,31 +17,31 @@ const ObjectButtonStyled = styled.button<{
   text-decoration: none;
 
   &:hover {
-    background-color: ${(props) => props.borderColor}
-    border-color: ${(props) => props.hoverBorderColor}
+    background-color: ${(props) => props.bordercolor};
+    border-color: ${(props) => props.hoverbordercolor};
   }
 `;
 
 interface ObjectButtonStyledProps {
   onClick: (event: React.MouseEvent<HTMLElement>) => void;
   text: string;
-  borderColor: string;
-  backgroundColor: string;
-  hoverBorderColor: string;
+  bordercolor: string;
+  backgroundcolor: string;
+  hoverbordercolor: string;
 }
 
 const ObjectButton = ({
   onClick,
   text,
-  borderColor,
-  backgroundColor,
-  hoverBorderColor,
+  bordercolor,
+  backgroundcolor,
+  hoverbordercolor,
 }: ObjectButtonStyledProps) => {
   return (
     <ObjectButtonStyled
-      borderColor={borderColor}
-      backgroundColor={backgroundColor}
-      hoverBorderColor={hoverBorderColor}
+      bordercolor={bordercolor}
+      backgroundcolor={backgroundcolor}
+      hoverbordercolor={hoverbordercolor}
       onClick={onClick}
     >
       {text}

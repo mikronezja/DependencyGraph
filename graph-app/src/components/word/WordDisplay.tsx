@@ -1,5 +1,10 @@
 import React, { useContext } from "react";
-import { ContainerStyled, ContainerTitle, TextAreaStyled } from "../../Styles";
+import {
+  ContainerStyled,
+  ContainerTitle,
+  RowStyled,
+  TextAreaStyled,
+} from "../../Styles";
 import ObjectButton from "../utilities/ObjectButton";
 import { AppContext } from "../../contexts/AppContext";
 
@@ -7,35 +12,47 @@ const WordDisplay = () => {
   const { word, setWord } = useContext(AppContext);
 
   return (
-    <ContainerStyled shadowColor="#FF9B1A" backGroundColor="#ffddb0ff">
-      <ContainerTitle>Give a word</ContainerTitle>
-      <ObjectButton
-        backgroundColor="#ff478bff"
-        borderColor="#ffdde9ff"
-        hoverBorderColor="#ff70a2ff"
-        text="+"
-        onClick={() => {
-          setWord([...word, ""]);
-        }}
-      />
+    <ContainerStyled backgroundcolor="#82cbffff">
+      <ContainerTitle>Your word</ContainerTitle>
+      <div>
+        <ObjectButton
+          backgroundcolor="#50b6ffff"
+          bordercolor="#24a4ffff"
+          hoverbordercolor="#24a4ffff"
+          text="+"
+          onClick={() => {
+            const newId = word.length > 0 ? word[word.length - 1].id + 1 : 0;
+
+            setWord([...word, { id: newId, letter: "" }]);
+          }}
+        />
+      </div>
       {word.map((value, index) => {
         return (
           <div
-            key={index}
-            style={{ display: "flex", justifyContent: "space-around" }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "20px",
+              color: "white",
+            }}
           >
+            {index}
             <TextAreaStyled
-              value={value}
+              hoverbordercolor="#24a4ffff"
+              key={index}
+              value={value.letter}
               onChange={(e) => {
                 const copy = [...word];
-                copy[index] = e.target.value;
+                copy[index].letter = e.target.value;
                 setWord(copy);
               }}
             />
             <ObjectButton
-              backgroundColor="#ff478bff"
-              borderColor="#ffdde9ff"
-              hoverBorderColor="#ff70a2ff"
+              backgroundcolor="#50b6ffff"
+              bordercolor="#24a4ffff"
+              hoverbordercolor="#24a4ffff"
               text="X"
               onClick={() => {
                 const copy = [...word];

@@ -5,38 +5,40 @@ import { ContainerStyled, ContainerTitle, TextAreaStyled } from "../../Styles";
 
 const CalculatorDisplay = () => {
   const { operations, setOperations } = useContext(AppContext);
-
-  console.log({ operations });
   return (
-    <ContainerStyled
-      inputHeight="200px"
-      shadowColor="#5EB6FF"
-      backGroundColor="#b0dcffff"
-    >
+    <ContainerStyled backgroundcolor="#FF5E5E">
       <ContainerTitle>Type your equations</ContainerTitle>
       <div>
         <ObjectButton
-          backgroundColor="#ff478bff"
-          borderColor="#ffdde9ff"
-          hoverBorderColor="#ff70a2ff"
+          backgroundcolor="#ff4141ff"
+          bordercolor="#ff2323ff"
+          hoverbordercolor="#ff2323ff"
           text="+"
           onClick={() => {
-            const newId =
-              operations.length > 0
-                ? operations[operations.length - 1].id + 1
-                : 0;
-
-            setOperations([...operations, { id: newId, equation: "" }]);
+            setOperations([...operations, { letter: "", equation: "" }]);
           }}
         />
       </div>
-      {operations.map(({ id, equation }, index) => {
+      {operations.map(({ letter, equation }, index) => {
         return (
           <div
-            key={id}
-            style={{ display: "flex", justifyContent: "space-around" }}
+            key={index}
+            style={{
+              display: "flex",
+              gap: "10px",
+            }}
           >
             <TextAreaStyled
+              hoverbordercolor="#ff2323ff"
+              value={letter}
+              onChange={(e) => {
+                const copy = [...operations];
+                copy[index].letter = e.target.value;
+                setOperations(copy);
+              }}
+            />
+            <TextAreaStyled
+              hoverbordercolor="#ff2323ff"
               value={equation}
               onChange={(e) => {
                 const copy = [...operations];
@@ -45,9 +47,9 @@ const CalculatorDisplay = () => {
               }}
             />
             <ObjectButton
-              backgroundColor="#ff478bff"
-              borderColor="#ffdde9ff"
-              hoverBorderColor="#ff70a2ff"
+              backgroundcolor="#ff4141ff"
+              bordercolor="#ff2323ff"
+              hoverbordercolor="#ff2323ff"
               text="X"
               onClick={() => {
                 const copy = [...operations];
