@@ -69,7 +69,7 @@ function App() {
           </div>
           <ButtonContainerStyled>
             <ObjectButton
-              backgroundcolor="#00ff6eff"
+              backgroundcolor="#00d25bff"
               bordercolor="#00af4cff"
               hoverbordercolor="#00af4cff"
               onClick={(e) => {

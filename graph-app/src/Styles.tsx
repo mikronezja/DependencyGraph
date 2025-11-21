@@ -80,7 +80,6 @@ export const TextAreaStyled = styled.textarea<{ hoverbordercolor: string }>`
     outline: none;
     box-shadow: none;
     background-color: white;
-    color: inherit;
   }
 
   &:hover {
