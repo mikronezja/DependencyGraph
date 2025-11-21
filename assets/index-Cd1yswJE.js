@@ -93,6 +93,7 @@ Error generating stack: `+l.message+`
   background: #ffffffff;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 `,lN=Me.div`
   margin: 20px;
   background-color: #ecececff;
